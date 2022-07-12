@@ -2,7 +2,7 @@ FROM ubuntu:bionic
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && apt-get install -y apt-utils gpg libssl-dev ca-certificates git
+RUN apt-get update && apt-get install -y apt-utils gpg libssl-dev ca-certificates git host
 
 RUN echo 'deb [trusted=yes] http://linux.dell.com/repo/community/openmanage/940/bionic bionic main' | tee -a /etc/apt/sources.list.d/linux.dell.com.sources.list
 RUN gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 1285491434D8786F 
