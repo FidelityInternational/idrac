@@ -1,10 +1,12 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
+## Have to use this due to default interactive tzdata config
+ARG DEBIAN_FRONTEND=noninteractive
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && apt-get install -y apt-utils gpg libssl-dev ca-certificates git host
+RUN apt-get update && apt-get upgrade -y && apt-get install -y apt-utils gpg libssl-dev ca-certificates git host
 
-RUN echo 'deb [trusted=yes] http://linux.dell.com/repo/community/openmanage/940/bionic bionic main' | tee -a /etc/apt/sources.list.d/linux.dell.com.sources.list
+RUN echo 'deb [trusted=yes] http://linux.dell.com/repo/community/openmanage/10300/focal focal main' | tee -a /etc/apt/sources.list.d/linux.dell.com.sources.list
 RUN gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 1285491434D8786F 
 RUN gpg -a --export 1285491434D8786F | apt-key add -
 
